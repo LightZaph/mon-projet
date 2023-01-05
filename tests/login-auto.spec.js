@@ -7,5 +7,6 @@ test('Login', async({page}) => {
     await page.locator('input[name="username"]').fill('test')
     await page.locator('input[name="password"]').fill('1234')
     await page.getByRole('button', { name: 'Se connecter' }).click();
+  await expect(page).toHaveURL('http://localhost:3000/success');
     
 })
