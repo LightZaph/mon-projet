@@ -13,6 +13,7 @@ test ('Login Automatisation Test', (async () => {
   await page.locator('input[name="password"]').fill('1234');
   await page.getByRole('button', { name: 'Se connecter' }).click();
   await page.getByRole('link', { name: 'Se déconnecter' }).click();
+  await expect(page).toHaveURL('http://localhost:3000/success');
 
   // ---------------------
   await context.close();
