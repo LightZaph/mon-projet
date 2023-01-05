@@ -1,11 +1,7 @@
-import {test, expect, chromium } from '@playwright/test';
+import {test, expect } from '@playwright/test';
 
-test ('Login Automatisation Test', (async () => {
-  const browser = await chromium.launch({
-    headless: true
-  });
-  const context = await browser.newContext();
-  const page = await context.newPage();
+test ('Login Automatisation Test', (async ({page}) => {
+
   await page.goto('http://localhost:3000/');
   await page.locator('input[name="username"]').click();
   await page.locator('input[name="username"]').fill('test');
@@ -15,7 +11,4 @@ test ('Login Automatisation Test', (async () => {
   await page.getByRole('link', { name: 'Se déconnecter' }).click();
   await expect(page).toHaveURL('http://localhost:3000/success');
 
-  // ---------------------
-  await context.close();
-  await browser.close();
 }));
